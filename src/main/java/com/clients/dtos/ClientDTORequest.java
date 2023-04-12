@@ -42,7 +42,8 @@ public class ClientDTORequest {
 
     public Client returnUpdaClient(ClientDTORequest clientDTORequest, Client client) {
 
-        client.setCpf(clientDTORequest.getCpf());
+        Long cpf = client.getCpf();
+        client.setCpf(cpf);
 
         if (clientDTORequest.getNome() == null) {
             client.setNome(client.getNome());
@@ -56,11 +57,24 @@ public class ClientDTORequest {
             client.setTelefone(clientDTORequest.getTelefone());
         }
 
-        if (clientDTORequest.getEndereco() == null) {
-            client.setEndereco(client.getEndereco());
+        if (clientDTORequest.getEndereco().getCep() == null) {
+            client.getEndereco().setCep(client.getEndereco().getCep());
         } else {
-            client.setEndereco(clientDTORequest.getEndereco());
+            client.getEndereco().setCep(clientDTORequest.getEndereco().getCep());
         }
+
+        if (clientDTORequest.getEndereco().getRua() == null) {
+            client.getEndereco().setRua(client.getEndereco().getRua());
+        } else {
+            client.getEndereco().setRua(clientDTORequest.getEndereco().getRua());
+        }
+
+        if (clientDTORequest.getEndereco().getNumero() == null) {
+            client.getEndereco().setNumero(client.getEndereco().getNumero());
+        } else {
+            client.getEndereco().setNumero(clientDTORequest.getEndereco().getNumero());
+        }
+
         if (clientDTORequest.getRendimentoMensal() == null) {
             client.setRendimentoMensal(client.getRendimentoMensal());
         } else {
