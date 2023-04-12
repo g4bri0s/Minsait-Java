@@ -20,7 +20,7 @@ import com.clients.service.LoanService;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/v1/clientes/{cpf}/emprestimos")
+@RequestMapping("/clientes/{cpf}/emprestimos")
 public class LoanController {
 
     private LoanService loanService;

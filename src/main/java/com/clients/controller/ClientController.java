@@ -21,7 +21,7 @@ import com.clients.service.ClientService;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-@RequestMapping("/api/v1/clientes")
+@RequestMapping("/clientes")
 public class ClientController {
 
     private ClientService clientService;
