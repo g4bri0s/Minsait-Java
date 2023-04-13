@@ -6,6 +6,7 @@ import com.clients.enums.RelationshipEnum;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.Getter;
@@ -21,14 +22,18 @@ public class Loan {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private BigDecimal valorInicial;
 
     private BigDecimal valorFinal;
 
+    @NotNull
     private RelationshipEnum relacionamento;
 
+    @NotNull
     private Date dataInicial;
 
+    @NotNull
     private Date dataFinal;
 
     private Long cpfCliente;

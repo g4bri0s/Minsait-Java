@@ -24,7 +24,7 @@ public class Client {
     @NotNull(message = "CPF não pode estar vazio")
     private Long cpf;
 
-    @NotBlank(message = "Name não pode estar vazio")
+    @NotBlank(message = "Nome não pode estar vazio")
     private String nome;
 
     @NotNull(message = "Telefone não pode estar vazio")
