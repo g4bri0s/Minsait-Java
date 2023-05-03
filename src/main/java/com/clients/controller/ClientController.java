@@ -46,13 +46,13 @@ public class ClientController {
 
     @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/{cpf}")
-    public ClientDTOResponse getClientById(@PathVariable Long cpf) throws ClientNotFoundException {
+    public ClientDTOResponse getClientById(@PathVariable String cpf) throws ClientNotFoundException {
         return this.clientService.getClientById(cpf);
     }
 
     @CrossOrigin(origins = "http://localhost:4200")
     @PutMapping("/{cpf}")
-    public ClientDTOResponse editClient(@Valid @RequestBody ClientDTORequest client, @PathVariable Long cpf)
+    public ClientDTOResponse editClient(@Valid @RequestBody ClientDTORequest client, @PathVariable String cpf)
             throws ClientNotFoundException {
         return this.clientService.editClient(cpf, client);
     }
@@ -60,7 +60,7 @@ public class ClientController {
     @CrossOrigin(origins = "http://localhost:4200")
     @DeleteMapping("/{cpf}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteClient(@PathVariable Long cpf) throws ClientNotFoundException {
+    public void deleteClient(@PathVariable String cpf) throws ClientNotFoundException {
         this.clientService.deleteClient(cpf);
     }
 

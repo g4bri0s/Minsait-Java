@@ -29,7 +29,7 @@ public class ClientService {
 		return new ClientDTOResponse(client);
 	}
 
-	public ClientDTOResponse getClientById(Long cpf) throws ClientNotFoundException {
+	public ClientDTOResponse getClientById(String cpf) throws ClientNotFoundException {
 		Optional<Client> optionalClient = this.clientRepository.findById(cpf);
 		if (optionalClient.isPresent()) {
 			return new ClientDTOResponse(optionalClient.get());
@@ -45,11 +45,11 @@ public class ClientService {
 				.collect(Collectors.toList());
 	}
 
-	public ClientDTOResponse editClient(@PathVariable Long cpf, @Valid ClientDTORequest clientDTORequest)
+	public ClientDTOResponse editClient(@PathVariable String cpf, @Valid ClientDTORequest clientDTORequest)
 			throws ClientNotFoundException {
 		Optional<Client> optionalClient = clientRepository.findById(cpf);
 		if (optionalClient.isPresent()) {
-			Client updatedClient = clientDTORequest.returnUpdaClient(clientDTORequest, optionalClient.get());
+			Client updatedClient = clientDTORequest.returnUpdatedClient(clientDTORequest, optionalClient.get());
 			this.clientRepository.save(updatedClient);
 			return new ClientDTOResponse(updatedClient);
 
@@ -58,7 +58,7 @@ public class ClientService {
 		}
 	}
 
-	public void deleteClient(Long cpf) throws ClientNotFoundException {
+	public void deleteClient(String cpf) throws ClientNotFoundException {
 		Client client = clientRepository.findById(cpf).orElseThrow(() -> new ClientNotFoundException(cpf));
 		clientRepository.delete(client);
 	}

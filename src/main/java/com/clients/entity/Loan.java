@@ -36,7 +36,7 @@ public class Loan {
     @NotNull
     private Date dataFinal;
 
-    private Long cpfCliente;
+    private String cpfCliente;
 
     public void setValorFinal(int clientLoanQuantity) {
         if (this.getValorInicial() != null) {

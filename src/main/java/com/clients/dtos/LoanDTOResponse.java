@@ -19,7 +19,7 @@ public class LoanDTOResponse {
     private RelationshipEnum relacionamento;
     private Date dataInicial;
     private Date dataFinal;
-    private Long cpfCliente;
+    private String cpfCliente;
 
     public LoanDTOResponse(Loan loan) {
         this.valorInicial = loan.getValorInicial();

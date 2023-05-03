@@ -23,7 +23,7 @@ public class LoanService {
         this.loanRepository = loanRepository;
     }
 
-    public BigDecimal consultLoanLimity(Long cpf) {
+    public BigDecimal consultLoanLimity(String cpf) {
         BigDecimal renda = loanRepository.findRendaByClientCpf(cpf);
         BigDecimal limite = renda.multiply(new BigDecimal(10));
         BigDecimal total = loanRepository.sumValorInicialByClientCpf(cpf);
@@ -33,7 +33,7 @@ public class LoanService {
         return limite.subtract(total);
     }
 
-    public LoanDTOResponse saveLoan(LoanDTORequest loanDTORequest, Long cpf)
+    public LoanDTOResponse saveLoan(LoanDTORequest loanDTORequest, String cpf)
             throws ClientNotFoundException, NoLimitException {
         if (this.loanRepository.existsByCpf(cpf)) {
             if (consultLoanLimity(cpf).compareTo(loanDTORequest.getValorInicial()) == 1
@@ -51,7 +51,7 @@ public class LoanService {
         }
     }
 
-    public List<LoanDTOResponse> getLoans(Long cpf) throws ClientNotFoundException {
+    public List<LoanDTOResponse> getLoans(String cpf) throws ClientNotFoundException {
         if (this.loanRepository.existsByCpf(cpf)) {
             List<Loan> loans = this.loanRepository.findAllByClientCpf(cpf);
             if (!loans.isEmpty()) {
@@ -66,7 +66,7 @@ public class LoanService {
         }
     }
 
-    public LoanDTOResponse getLoanById(Long cpf, Long id) throws LoanNotFoundException, ClientNotFoundException {
+    public LoanDTOResponse getLoanById(String cpf, Long id) throws LoanNotFoundException, ClientNotFoundException {
         if (this.loanRepository.existsByCpf(cpf)) {
             if (this.loanRepository.existsById(id)) {
                 return new LoanDTOResponse(this.loanRepository.findById(id).get());
@@ -78,7 +78,7 @@ public class LoanService {
         }
     }
 
-    public void deleteLoan(Long cpf, Long id) throws LoanNotFoundException, ClientNotFoundException {
+    public void deleteLoan(String cpf, Long id) throws LoanNotFoundException, ClientNotFoundException {
         if (this.loanRepository.existsByCpf(cpf)) {
             if (this.loanRepository.existsById(id)) {
                 this.loanRepository.deleteById(id);

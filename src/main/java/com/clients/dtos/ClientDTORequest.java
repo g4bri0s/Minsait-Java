@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import com.clients.entity.Address;
 import com.clients.entity.Client;
 import jakarta.persistence.Embedded;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,15 +11,14 @@ import lombok.Setter;
 @Getter
 public class ClientDTORequest {
 
-    @NotNull
-    private Long cpf;
+    private String cpf;
     private String nome;
-    private Long telefone;
+    private String telefone;
     @Embedded
     private Address endereco;
     private BigDecimal rendimentoMensal;
 
-    public ClientDTORequest(Long cpf, String nome, Long telefone, Address endereco, BigDecimal rendimentoMensal) {
+    public ClientDTORequest(String cpf, String nome, String telefone, Address endereco, BigDecimal rendimentoMensal) {
 
         this.cpf = cpf;
         this.nome = nome;
@@ -40,47 +38,37 @@ public class ClientDTORequest {
         return client;
     }
 
-    public Client returnUpdaClient(ClientDTORequest clientDTORequest, Client client) {
-
-        Long cpf = client.getCpf();
-        client.setCpf(cpf);
-
-        if (clientDTORequest.getNome() == null) {
-            client.setNome(client.getNome());
-        } else {
+    public Client returnUpdatedClient(ClientDTORequest clientDTORequest, Client client) {
+        if (clientDTORequest.getNome() != null) {
             client.setNome(clientDTORequest.getNome());
         }
 
-        if (clientDTORequest.getTelefone() == null) {
-            client.setTelefone(client.getTelefone());
-        } else {
+        if (clientDTORequest.getTelefone() != null) {
             client.setTelefone(clientDTORequest.getTelefone());
         }
 
-        if (clientDTORequest.getEndereco().getCep() == null) {
-            client.getEndereco().setCep(client.getEndereco().getCep());
-        } else {
-            client.getEndereco().setCep(clientDTORequest.getEndereco().getCep());
+        if (clientDTORequest.getEndereco() != null) {
+            Address address = client.getEndereco();
+            Address addressDTO = clientDTORequest.getEndereco();
+
+            if (addressDTO.getCep() != null) {
+                address.setCep(addressDTO.getCep());
+            }
+
+            if (addressDTO.getRua() != null) {
+                address.setRua(addressDTO.getRua());
+            }
+
+            if (addressDTO.getNumero() != null) {
+                address.setNumero(addressDTO.getNumero());
+            }
         }
 
-        if (clientDTORequest.getEndereco().getRua() == null) {
-            client.getEndereco().setRua(client.getEndereco().getRua());
-        } else {
-            client.getEndereco().setRua(clientDTORequest.getEndereco().getRua());
-        }
-
-        if (clientDTORequest.getEndereco().getNumero() == null) {
-            client.getEndereco().setNumero(client.getEndereco().getNumero());
-        } else {
-            client.getEndereco().setNumero(clientDTORequest.getEndereco().getNumero());
-        }
-
-        if (clientDTORequest.getRendimentoMensal() == null) {
-            client.setRendimentoMensal(client.getRendimentoMensal());
-        } else {
+        if (clientDTORequest.getRendimentoMensal() != null) {
             client.setRendimentoMensal(clientDTORequest.getRendimentoMensal());
         }
 
         return client;
     }
+
 }

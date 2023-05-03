@@ -8,7 +8,7 @@ public class NoLimitException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    public NoLimitException(Long cpf) {
+    public NoLimitException(String cpf) {
         super(String.format("Client with cpf %s has no limit to contracting this loan", cpf));
     }
 }

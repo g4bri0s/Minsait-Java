@@ -13,15 +13,13 @@ import lombok.Setter;
 @AllArgsConstructor
 public class ClientDTOResponse {
 
-    private Long cpf;
     private String nome;
-    private Long telefone;
+    private String telefone;
     @Embedded
     private Address endereco;
     private BigDecimal rendimentoMensal;
 
     public ClientDTOResponse(Client client) {
-        this.cpf = client.getCpf();
         this.nome = client.getNome();
         this.telefone = client.getTelefone();
         this.endereco = client.getEndereco();

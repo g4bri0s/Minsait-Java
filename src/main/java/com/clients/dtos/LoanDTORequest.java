@@ -18,10 +18,10 @@ public class LoanDTORequest {
     private RelationshipEnum relacionamento;
     private Date dataInicial;
     private Date dataFinal;
-    private Long cpfCliente;
+    private String cpfCliente;
 
     public LoanDTORequest(Long id, BigDecimal valorInicial, RelationshipEnum relacionamento,
-            Date dataInicial, Date dataFinal, Long cpfCliente) {
+            Date dataInicial, Date dataFinal, String cpfCliente) {
         this.id = id;
         this.valorInicial = valorInicial;
         this.relacionamento = relacionamento;

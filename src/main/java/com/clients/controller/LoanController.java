@@ -32,25 +32,25 @@ public class LoanController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public LoanDTOResponse saveLoan(@Valid @RequestBody LoanDTORequest loan, @PathVariable Long cpf)
+    public LoanDTOResponse saveLoan(@Valid @RequestBody LoanDTORequest loan, @PathVariable String cpf)
             throws ClientNotFoundException, NoLimitException {
         return this.loanService.saveLoan(loan, cpf);
     }
 
     @GetMapping
-    public List<LoanDTOResponse> getLoans(@PathVariable Long cpf) throws ClientNotFoundException {
+    public List<LoanDTOResponse> getLoans(@PathVariable String cpf) throws ClientNotFoundException {
         return this.loanService.getLoans(cpf);
     }
 
     @GetMapping("/{id}")
-    public LoanDTOResponse getLoanById(@PathVariable Long cpf, @PathVariable Long id)
+    public LoanDTOResponse getLoanById(@PathVariable String cpf, @PathVariable Long id)
             throws LoanNotFoundException, ClientNotFoundException {
         return this.loanService.getLoanById(cpf, id);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteLoan(@PathVariable Long cpf, @PathVariable Long id)
+    public void deleteLoan(@PathVariable String cpf, @PathVariable Long id)
             throws LoanNotFoundException, ClientNotFoundException {
         this.loanService.deleteLoan(cpf, id);
     }

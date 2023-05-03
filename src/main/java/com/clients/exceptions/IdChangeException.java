@@ -8,7 +8,7 @@ public class IdChangeException extends Exception {
 
     private static final long serialVersionUID = 1L;
 
-    public IdChangeException(Long cpf) {
+    public IdChangeException(String cpf) {
         super(String.format("Client with cpf %s must continue with the same cpf", cpf));
     }
 }
